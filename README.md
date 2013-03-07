@@ -16,7 +16,7 @@ In a terminal:
 
     git clone http://github.com/syl20bnr/i3status-keyboard-leds
     cd i3status-keyboard-leds
-    sudo ln -s /home/foo/bar/i3status+.py /usr/local/bin/i3status+
+    sudo ln -s /home/foo/bar/i3status-keyboard-leds/i3status+.py /usr/local/bin/i3status+
 
 In your ~/.i3/config replace the call to i3status by i3status+
 
