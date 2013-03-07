@@ -71,7 +71,6 @@ if __name__ == '__main__':
             line, prefix = line[1:], ','
         # prepend led statuses
         j = json.loads(line)
-        leds = get_led_statuses()
-        [(lambda x: j.insert(0, x))(x) for x in leds]
+        [j.insert(0, x) for x in get_led_statuses()]
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
