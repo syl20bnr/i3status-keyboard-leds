@@ -6,8 +6,6 @@ A python wrapper for i3status adding current status of keyboard leds (Caps lock,
 This wrapper is the result of [this thread](https://faq.i3wm.org/question/1258/i3bari3status-is-it-possible-to-have-caps-lock-and-num-lock-indicator/).
 Special thanks to the persons who have participated to this thread.
 
-The script contains an experimental support for the Scroll Lock key for Microsoft Natural keyboard 4000. 
-
 The resulting bar should look like this (green arrow):
 ![i3bar](https://raw.github.com/syl20bnr/i3status-keyboard-leds/master/i3bar.png)
 

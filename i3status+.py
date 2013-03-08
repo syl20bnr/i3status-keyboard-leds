@@ -20,9 +20,10 @@ import time
 I3STATUS_CMD = 'i3status'
 LED_STATUSES_CMD = 'xset q | grep "LED mask"'
 LED_MASKS = [
-    ('caps',    0b01,         'CAPS',    '#FF0000'),
-    ('num',     0b10,         'NUM',     '#FFFF00'),
-    ('scroll',  0b1111101000, 'SCROLL',  '#00B7EB')]
+    ('caps',   0b0000000001,   'CAPS',   '#FF0000'),
+    ('num',    0b0000000010,    'NUM',   '#FFFF00'),
+    ('scroll', 0b0000000100, 'SCROLL',   '#00B7EB'),
+    ('altgr',  0b1111101000,  'ALTGR',   '#FF7F00')]
 
 def get_led_statuses():
     ''' Return a list of dictionaries representing the current keyboard LED
