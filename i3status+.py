@@ -20,10 +20,9 @@ import time
 I3STATUS_CMD = 'i3status'
 LED_STATUSES_CMD = 'xset q | grep "LED mask"'
 LED_MASKS = [
-    ('caps',   0b0000000001,   'CAPS',   '#FF0000'),
-    ('num',    0b0000000010,    'NUM',   '#FFFF00'),
-    ('scroll', 0b0000000100, 'SCROLL',   '#00B7EB'),
-    ('altgr',  0b1111101000,  'ALTGR',   '#FF7F00')]
+    ('caps', 0x01, 'CAPS', '#FF0000'),
+    ('num',  0x02, 'NUM',  '#FFFF00')]
+
 
 def get_led_statuses():
     ''' Return a list of dictionaries representing the current keyboard LED
@@ -33,19 +32,23 @@ def get_led_statuses():
         mask = re.search(r'[0-9]{8}', p.stdout.read())
         if mask:
             v = int(mask.group(0))
-            return [to_dict(n,t,c) for n,m,t,c in reversed(LED_MASKS) if v & m]
+            return [to_dict(n, t, c) for n, m, t, c in reversed(LED_MASKS)
+                    if v & m]
     except Exception:
         return ''
+
 
 def to_dict(name, text, color):
     ''' Returns a dictionary with given information '''
     return {'full_text': text, 'name': name, 'color': color}
 
+
 def print_line(message):
     ''' Non-buffered printing to stdout. '''
     sys.stdout.write(message + '\n')
     sys.stdout.flush()
-   
+
+
 def read_line(process):
     ''' Interrupted respecting reader for stdin. '''
     try:
@@ -56,6 +59,7 @@ def read_line(process):
     # exit on ctrl-c
     except KeyboardInterrupt:
         sys.exit()
+
 
 if __name__ == '__main__':
     p = Popen(I3STATUS_CMD, stdout=PIPE, shell=True)
@@ -73,6 +77,7 @@ if __name__ == '__main__':
             line, prefix = line[1:], ','
         # prepend led statuses
         j = json.loads(line)
-        [j.insert(0, x) for x in get_led_statuses()]
+        leds = get_led_statuses()
+        [(lambda x: j.insert(0, x))(x) for x in leds]
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
