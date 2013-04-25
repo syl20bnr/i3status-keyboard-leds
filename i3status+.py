@@ -24,6 +24,7 @@ LED_MASKS = [
     ('num',  0x02, 'NUM',  '#FFFF00')]
 
 
+
 def get_led_statuses():
     ''' Return a list of dictionaries representing the current keyboard LED
     statuses '''
