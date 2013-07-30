@@ -20,9 +20,10 @@ import time
 I3STATUS_CMD = 'i3status'
 LED_STATUSES_CMD = 'xset q | grep "LED mask"'
 LED_MASKS = [
-    ('caps', 0x01, 'CAPS', '#FF0000'),
-    ('num',  0x02, 'NUM',  '#FFFF00')]
-
+    ('caps',   0b0000000001,   'CAPS',   '#DC322F'),
+    ('num',    0b0000000010,    'NUM',   '#859900'),
+    ('scroll', 0b0000000100, 'SCROLL',   '#2AA198'),
+    ('altgr',  0b1111101000,  'ALTGR',   '#B58900')]
 
 
 def get_led_statuses():
